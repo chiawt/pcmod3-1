@@ -15,7 +15,7 @@ function HomeScreen() {
       red: Math.floor(Math.random() * 256),
       green: Math.floor(Math.random() * 256),
       blue: Math.floor(Math.random() * 256),
-      id: `${colorArray.length}`,
+      id: colorArray.length.toString(),
     },
   ]);
 }
