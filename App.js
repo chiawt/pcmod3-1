@@ -59,7 +59,9 @@ function DetailsScreen({route}){
   const { red, green, blue } = route.params;
   return (
     <View style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`, flex:1}}>
-      <Text>DetailsScreen</Text>
+      <Text>red: {red}</Text>
+      <Text>green: {green}</Text>
+      <Text>blue: {blue}</Text>
     </View>
   )
 }
