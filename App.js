@@ -11,7 +11,7 @@ function HomeScreen({navigation}) {
 
   function renderItem({ item }) {
     return (
-      <TouchableOpacity onPress={() => navigation.navigate("DetailsScreen")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Details", item)}>
         <BlockRGB red={item.red} green={item.green} blue={item.blue} />
       </TouchableOpacity>
     );
@@ -54,8 +54,14 @@ return (
 );
 }
 
-function DetailsScreen(){
-  return <Text>DetailsScreen</Text>
+function DetailsScreen({route}){
+  console.log(route);
+  const { red, green, blue } = route.params;
+  return (
+    <View style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`, flex:1}}>
+      <Text>DetailsScreen</Text>
+    </View>
+  )
 }
 
 const Stack = createStackNavigator();
@@ -65,7 +71,7 @@ export default function App() {
    <NavigationContainer>
      <Stack.Navigator>
        <Stack.Screen name="Colour List" component={HomeScreen} />
-       <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
+       <Stack.Screen name="Details" component={DetailsScreen} />
      </Stack.Navigator>
    </NavigationContainer>
  );
