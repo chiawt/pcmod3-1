@@ -1,10 +1,14 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, FlatList,TouchableOpacity, Button } from "react-native";
+import { StyleSheet, Text, View, FlatList,TouchableOpacity, Button, Dimensions } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import BlockRGB from "./components/BlockRGB";
 
+const screenWidth = Dimensions.get("window").width;
+const num = 6;
+const tileSize = screenWidth / num;
+console.log(tileSize)
+console.log(tileSize)
 function HomeScreen({navigation}) {
  const [colorArray, setColorArray] = useState([0]);
 
@@ -60,7 +64,7 @@ return (
       <Text style={{ color: "blue" }}>Reset colour</Text>
     </TouchableOpacity> */}
 
-    <FlatList style={styles.list} data={colorArray} renderItem={renderItem} />
+    <FlatList style={styles.list} data={colorArray} renderItem={renderItem} numColumns={num}/>
   </View>
 );
 }
@@ -69,10 +73,10 @@ function DetailsScreen({route}){
   console.log(route);
   const { red, green, blue } = route.params;
   return (
-    <View style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`, flex:1}}>
-      <Text>red: {red}</Text>
-      <Text>green: {green}</Text>
-      <Text>blue: {blue}</Text>
+    <View style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`, flex:1, justifyContent: 'center',alignItems: 'center'}}>
+      <Text style={styles.text}>red: {red}</Text>
+      <Text style={styles.text}>green: {green}</Text>
+      <Text style={styles.text}>blue: {blue}</Text>
     </View>
   )
 }
@@ -97,6 +101,10 @@ const styles = StyleSheet.create({
    alignItems: "center",
  },
  list: {
-   width: "30%",
+   width: "100%",
  },
+ text: {
+  color: 'white',
+  fontSize: 20,
+},
 });
